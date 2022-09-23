@@ -15,6 +15,7 @@ import com.kjh.exam.demo.vo.Article;
 public class UsrArticleController {
 	public List<Article> articles;
 	private int lastArticleId;
+	
 	public UsrArticleController() {
 		articles = new ArrayList<>();
 		lastArticleId =0;
