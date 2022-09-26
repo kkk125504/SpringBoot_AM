@@ -13,6 +13,8 @@ import com.kjh.exam.demo.vo.Article;
 
 @Controller
 public class UsrArticleController {
+
+	// 인스턴스 변수
 	public List<Article> articles;
 	private int lastArticleId;
 
@@ -36,10 +38,28 @@ public class UsrArticleController {
 
 	private Article writeArticle(String title, String body) {
 		int id = lastArticleId + 1;
+
 		Article article = new Article(id, title, body);
+
 		articles.add(article);
 		lastArticleId = id;
 		return article;
+	}
+
+	private Article getArticle(int id) {
+
+		for (Article article : articles) {
+			if (article.getId() == id) {
+				return article;
+			}
+		}
+		return null;
+	}
+
+	private void deleteArticle(int id) {
+		Article article = getArticle(id);
+
+		articles.remove(article);
 	}
 
 	// 액션 메소드
@@ -48,13 +68,26 @@ public class UsrArticleController {
 	public Article doAdd(String title, String body) {
 
 		Article article = writeArticle(title, body);
+
 		return article;
 	}
 
 	@RequestMapping("usr/article/getArticles")
 	@ResponseBody
 	public List<Article> getArticles() {
-
 		return articles;
+	}
+
+	@RequestMapping("usr/article/doDelete")
+	@ResponseBody
+	public String doDelete(int id) {
+		Article article = getArticle(id);
+
+		if (article == null) {
+			return id + "번 게시물은 존재하지 않습니다.";
+		}
+		
+		deleteArticle(id);
+		return id + "번 게시물을 삭제 했습니다.";
 	}
 }
