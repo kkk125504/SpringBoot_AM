@@ -16,7 +16,7 @@ public class ArticleService {
 	@Autowired	
 	ArticleService(ArticleRepository articleRepository){
 		this.articleRepository =articleRepository;
-		articleRepository.makeTestData();
+	
 	}	
 
 	public Article getArticle(int id) {				
@@ -40,7 +40,4 @@ public class ArticleService {
 		articleRepository.modifyArticle(id,title,body);
 	}
 
-	
-
-	
 }
