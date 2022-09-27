@@ -1,9 +1,6 @@
 package com.kjh.exam.demo.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +16,14 @@ public class UsrArticleController {
 	ArticleService articleService;
 
 	// 액션 메소드
-	@RequestMapping("usr/article/doAdd")
+	@RequestMapping("usr/article/getArticle")
 	@ResponseBody
-	public Article doAdd(String title, String body) {
+	public Object getArticleAction(int id) {
+		Article article = articleService.getArticle(id);
 
-		Article article = articleService.writeArticle(title, body);
-
+		if (article == null) {
+			return id + "번 게시물은 존재하지 않습니다.";
+		}
 		return article;
 	}
 
@@ -34,17 +33,13 @@ public class UsrArticleController {
 		return articleService.getArticles();
 	}
 
-	@RequestMapping("usr/article/doDelete")
+	@RequestMapping("usr/article/doAdd")
 	@ResponseBody
-	public String doDelete(int id) {
-		Article article = articleService.getArticle(id);
+	public Article doAdd(String title, String body) {
 
-		if (article == null) {
-			return id + "번 게시물은 존재하지 않습니다.";
-		}
+		Article article = articleService.writeArticle(title, body);
 
-		articleService.deleteArticle(id);
-		return id + "번 게시물을 삭제 했습니다.";
+		return article;
 	}
 
 	@RequestMapping("usr/article/doModify")
@@ -60,14 +55,17 @@ public class UsrArticleController {
 		return article;
 	}
 
-	@RequestMapping("usr/article/getArticle")
+	@RequestMapping("usr/article/doDelete")
 	@ResponseBody
-	public Object getArticleAction(int id) {
+	public String doDelete(int id) {
 		Article article = articleService.getArticle(id);
 
 		if (article == null) {
 			return id + "번 게시물은 존재하지 않습니다.";
 		}
-		return article;
+
+		articleService.deleteArticle(id);
+		return id + "번 게시물을 삭제 했습니다.";
 	}
+
 }
