@@ -17,9 +17,18 @@ public class MemberService {
 	}
 
 	public int doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email) {
+		Member existsMember= getMemberByLoginId(loginId);
+		if(existsMember !=null) {
+			return -1;
+		}
 		memberRepository.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
 		int id = memberRepository.getLastInsertId();
 		return id;
+	}
+
+	private Member getMemberByLoginId(String loginId) {
+		Member member = memberRepository.getMemberByLoginId(loginId);
+		return member;
 	}
 
 	public Member getMemberById(int id) {
