@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kjh.exam.demo.repository.ArticleRepository;
+import com.kjh.exam.demo.util.Ut;
 import com.kjh.exam.demo.vo.Article;
+import com.kjh.exam.demo.vo.ResultData;
 
 @Service
 public class ArticleService {
@@ -16,7 +18,6 @@ public class ArticleService {
 	@Autowired
 	public ArticleService(ArticleRepository articleRepository) {
 		this.articleRepository = articleRepository;
-
 	}
 
 	public Article getArticle(int id) {
