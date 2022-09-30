@@ -23,7 +23,10 @@ public class ResultData {
 		rd.data1 = data1;
 		return rd;
 	}
-
+	public static ResultData newData(ResultData Rd, Object data1) {
+		
+		return from(Rd.getResultCode(),Rd.getMsg(),data1);
+	}
 	public boolean isSuccess() {
 		return resultCode.startsWith("S-");
 	}
