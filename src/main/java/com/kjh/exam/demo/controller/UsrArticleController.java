@@ -31,7 +31,7 @@ public class UsrArticleController {
 
 	@RequestMapping("usr/article/getArticles")
 	@ResponseBody
-	public List<Article> getArticles() {
+	public ResultData getArticles() {		
 		return articleService.getArticles();
 	}
 
