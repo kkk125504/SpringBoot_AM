@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kjh.exam.demo.service.MemberService;
 import com.kjh.exam.demo.util.Ut;
+import com.kjh.exam.demo.vo.Article;
 import com.kjh.exam.demo.vo.Member;
 import com.kjh.exam.demo.vo.ResultData;
 
@@ -24,29 +25,29 @@ public class UsrMemberController {
 		if (Ut.empty(loginId)) {
 			return ResultData.from("F-1", "아이디를 입력 해주세요.");
 		}
-		
+
 		if (Ut.empty(loginPw)) {
 			return ResultData.from("F-2", "비밀번호를 입력 해주세요.");
 		}
-		
+
 		if (Ut.empty(name)) {
 			return ResultData.from("F-3", "이름을 입력 해주세요.");
 		}
-		
+
 		if (Ut.empty(nickname)) {
 			return ResultData.from("F-3", "닉네임 입력 해주세요.");
 		}
-		
+
 		if (Ut.empty(cellphoneNum)) {
 			return ResultData.from("F-4", "전화번호를 입력 해주세요.");
 		}
-		
+
 		if (Ut.empty(email)) {
 			return ResultData.from("F-5", "이메일을 입력 해주세요.");
 		}
 
-		ResultData joinRd = memberService.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
-
+		ResultData<Integer> joinRd = memberService.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
+		
 		if (joinRd.isFail()) {
 			return joinRd;
 		}
@@ -54,6 +55,7 @@ public class UsrMemberController {
 			return joinRd;
 		}
 		Member member = memberService.getMemberById((int) joinRd.getData1());
+
 		return ResultData.newData(joinRd, member);
 	}
 

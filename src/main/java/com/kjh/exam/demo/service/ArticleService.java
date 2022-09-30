@@ -24,12 +24,12 @@ public class ArticleService {
 		return articleRepository.getArticle(id);
 	}
 
-	public ResultData getArticles() {
+	public ResultData<List<Article>> getArticles() {
 		List<Article> articles = articleRepository.getArticles();
 		return ResultData.from("S-1", "Article List", articles);
 	}
 
-	public ResultData writeArticle(String title, String body) {	
+	public ResultData<Integer> writeArticle(String title, String body) {	
 		articleRepository.writeArticle(title, body);
 		int id = articleRepository.getLastInsertId();
 				
