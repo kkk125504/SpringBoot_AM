@@ -1,5 +1,7 @@
 package com.kjh.exam.demo.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,9 +52,9 @@ public class UsrMemberController {
 		// F-1~8
 		// 실패
 		ResultData<Integer> joinRd = memberService.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
-		
+
 		if (joinRd.isFail()) {
-			return (ResultData)joinRd;			
+			return (ResultData) joinRd;
 		}
 
 		Member member = memberService.getMemberById(joinRd.getData1());
@@ -60,4 +62,26 @@ public class UsrMemberController {
 		return ResultData.newData(joinRd, member);
 	}
 
+	@RequestMapping("usr/member/doLogin")
+	@ResponseBody
+	public ResultData doLogin(HttpSession httpSession, String loginId, String loginPw) {
+		if (Ut.empty(loginId)) {
+			return ResultData.from("F-3", "이름을 입력 해주세요.");
+		}
+
+		if (Ut.empty(loginPw)) {
+			return ResultData.from("F-4", "닉네임 입력 해주세요.");
+		}
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		if(member==null) {
+			return ResultData.from("F-1", Ut.f("해당하는 아이디(%s)를 찾을수 없습니다.", loginId));
+		}
+		if(member.getLoginPw().equals(loginPw)==false) {
+			return ResultData.from("F-1", "비밀번호가 일치하지 않습니다.");
+		}
+		httpSession.setAttribute("loginedMemberId", member.getId());
+		httpSession.setAttribute("loginedMemberLoginId", member.getLoginId());
+		return ResultData.from("S-1", Ut.f("%s님 환영합니다.", member.getName()));		
+	}
 }

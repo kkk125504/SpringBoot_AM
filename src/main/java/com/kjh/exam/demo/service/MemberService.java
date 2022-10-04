@@ -36,7 +36,7 @@ public class MemberService {
 		return ResultData.from("S-1", Ut.f("%s님 회원가입 성공", nickname),id);
 	}
 
-	private Member getMemberByLoginId(String loginId) {
+	public Member getMemberByLoginId(String loginId) {
 		Member member = memberRepository.getMemberByLoginId(loginId);
 		return member;
 	}
