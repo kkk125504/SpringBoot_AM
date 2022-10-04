@@ -35,25 +35,26 @@ public class UsrMemberController {
 		}
 
 		if (Ut.empty(nickname)) {
-			return ResultData.from("F-3", "닉네임 입력 해주세요.");
+			return ResultData.from("F-4", "닉네임 입력 해주세요.");
 		}
 
 		if (Ut.empty(cellphoneNum)) {
-			return ResultData.from("F-4", "전화번호를 입력 해주세요.");
+			return ResultData.from("F-5", "전화번호를 입력 해주세요.");
 		}
 
 		if (Ut.empty(email)) {
-			return ResultData.from("F-5", "이메일을 입력 해주세요.");
+			return ResultData.from("F-6", "이메일을 입력 해주세요.");
 		}
-
+		// S-1
+		// 회원가입이 완료되었습니다
+		// F-1~8
+		// 실패
 		ResultData<Integer> joinRd = memberService.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
 		
 		if (joinRd.isFail()) {
 			return joinRd;
 		}
-		if (joinRd.isFail()) {
-			return joinRd;
-		}
+
 		Member member = memberService.getMemberById((int) joinRd.getData1());
 
 		return ResultData.newData(joinRd, member);

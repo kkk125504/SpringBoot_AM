@@ -23,12 +23,12 @@ public class MemberService {
 		// 로그인아이디 중복체크
 		Member existsMember = getMemberByLoginId(loginId);
 		if (existsMember != null) {
-			return ResultData.from("F-6", Ut.f("중복되는 아이디(%s)가 있습니다", loginId));
+			return ResultData.from("F-7", Ut.f("중복되는 아이디(%s)가 있습니다", loginId));
 		}
 		// 이름과 이메일 중복체크
 		existsMember = getMemberByNameAndEmail(name, email);
 		if (existsMember != null) {
-			return ResultData.from("F-7", Ut.f("중복되는 이름(%s)과 이메일(%s)이 있습니다", name, email));
+			return ResultData.from("F-8", Ut.f("중복되는 이름(%s)과 이메일(%s)이 있습니다", name, email));
 		}
 		memberRepository.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
 		int id = memberRepository.getLastInsertId();
