@@ -32,7 +32,7 @@ public class ArticleService {
 		articleRepository.writeArticle(loginedMemberId, title, body);
 		int id = articleRepository.getLastInsertId();
 
-		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id), id);
+		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id),"id", id);
 	}
 
 	public void deleteArticle(int id) {
@@ -40,14 +40,14 @@ public class ArticleService {
 	}
 
 	public ResultData<Article> modifyArticle(int id, String title, String body) {
-			
+
 		articleRepository.modifyArticle(id, title, body);
 		Article article = getArticle(id);
-		return ResultData.from("S-1", Ut.f("%d번 게시물 수정 했습니다.", id), article);
+		return ResultData.from("S-1", Ut.f("%d번 게시물 수정 했습니다.", id), "article", article);
 	}
 
 	public ResultData actorCanModify(int loginedMemberId, Article article) {
-		
+
 		if (loginedMemberId != article.getMemberId()) {
 			return ResultData.from("F-2", "해당 게시물에 대한 수정 권한이 없습니다.");
 		}
