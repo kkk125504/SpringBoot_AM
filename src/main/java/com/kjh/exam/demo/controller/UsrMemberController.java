@@ -20,7 +20,7 @@ public class UsrMemberController {
 	MemberService memberService;
 
 	// 액션 메소드
-	@RequestMapping("usr/member/doJoin")
+	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public ResultData<Member> doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNum,
 			String email) {
@@ -62,7 +62,7 @@ public class UsrMemberController {
 		return ResultData.newData(joinRd,"member", member);
 	}
 
-	@RequestMapping("usr/member/doLogin")
+	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
 	public ResultData doLogin(HttpSession httpSession, String loginId, String loginPw) {
 		boolean isLogined = false;
@@ -95,7 +95,7 @@ public class UsrMemberController {
 		return ResultData.from("S-1", Ut.f("%s님 환영합니다.", member.getName()));		
 	}
 	
-	@RequestMapping("usr/member/doLogout")
+	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
 	public ResultData doLogout(HttpSession httpSession) {	
 		boolean isLogined = false;

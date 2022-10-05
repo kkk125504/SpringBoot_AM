@@ -20,7 +20,7 @@ public class UsrArticleController {
 	ArticleService articleService;
 
 	// 액션 메소드
-	@RequestMapping("usr/article/getArticle")
+	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
 	public ResultData<Article> getArticle(int id) {
 		Article article = articleService.getArticle(id);
@@ -31,14 +31,14 @@ public class UsrArticleController {
 		return ResultData.from("S-1", Ut.f("%d번 게시물입니다.", id), "article",article);
 	}
 
-	@RequestMapping("usr/article/getArticles")
+	@RequestMapping("/usr/article/getArticles")
 	@ResponseBody
 	public ResultData<List<Article>> getArticles() {
 		List<Article> articles = articleService.getArticles();
 		return ResultData.from("S-1", "Article List", "article", articles);
 	}
 
-	@RequestMapping("usr/article/doAdd")
+	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
 	public ResultData<Article> doAdd(HttpSession httpSession, String title, String body) {
 		boolean isLogined = false;
@@ -66,7 +66,7 @@ public class UsrArticleController {
 		return ResultData.newData(writeRd, "article", article);
 	}
 
-	@RequestMapping("usr/article/doModify")
+	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
 	public ResultData<Article> doModify(HttpSession httpSession, int id, String title, String body) {
 		boolean isLogined = false;
@@ -92,7 +92,7 @@ public class UsrArticleController {
 		return articleService.modifyArticle(id, title, body);
 	}
 
-	@RequestMapping("usr/article/doDelete")
+	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public ResultData doDelete(HttpSession httpSession, int id) {
 		boolean isLogined = false;
