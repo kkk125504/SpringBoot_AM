@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,7 +22,6 @@ public class UsrArticleController {
 
 	// 액션 메소드
 	@RequestMapping("/usr/article/getArticle")
-	@ResponseBody
 	public ResultData<Article> getArticle(int id) {
 		Article article = articleService.getArticle(id);
 
@@ -32,10 +32,10 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/getArticles")
-	@ResponseBody
-	public ResultData<List<Article>> getArticles() {
+	public String getArticles(Model model) {
 		List<Article> articles = articleService.getArticles();
-		return ResultData.from("S-1", "Article List", "article", articles);
+		model.addAttribute("articles",articles);
+		return "usr/article/list";
 	}
 
 	@RequestMapping("/usr/article/doAdd")
