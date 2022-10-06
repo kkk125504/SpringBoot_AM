@@ -21,18 +21,15 @@ public class UsrArticleController {
 	ArticleService articleService;
 
 	// 액션 메소드
-	@RequestMapping("/usr/article/getArticle")
-	public ResultData<Article> getArticle(int id) {
+	@RequestMapping("/usr/article/detail")
+	public String showDetail(Model model ,int id) {
 		Article article = articleService.getArticle(id);
-
-		if (article == null) {
-			return ResultData.from("F-1", Ut.f("%d번 게시물은 존재하지 않습니다.", id));
-		}
-		return ResultData.from("S-1", Ut.f("%d번 게시물입니다.", id), "article",article);
+		model.addAttribute("article", article);
+		return "usr/article/detail";
 	}
 
 	@RequestMapping("/usr/article/list")
-	public String getArticles(Model model) {
+	public String showList(Model model) {
 		List<Article> articles = articleService.getArticles();
 		model.addAttribute("articles",articles);
 		return "usr/article/list";
