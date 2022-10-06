@@ -31,7 +31,7 @@ public class UsrArticleController {
 		return ResultData.from("S-1", Ut.f("%d번 게시물입니다.", id), "article",article);
 	}
 
-	@RequestMapping("/usr/article/getArticles")
+	@RequestMapping("/usr/article/list")
 	public String getArticles(Model model) {
 		List<Article> articles = articleService.getArticles();
 		model.addAttribute("articles",articles);

@@ -9,23 +9,32 @@
 <title>게시물 리스트</title>
 </head>
 <body>
-		<table border="2">
-				<thead>
+	<h1>LIST</h1>
+	<hr />
+	<header>
+		<a href="#">LOGO</a>
+			<ul>
+				<li><a href="/">HOME</a></li>
+				<li><a href="../article/list">LIST</a></li>
+			</ul>	
+	</header>
+	<table border="2">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>날짜</th>
+					<th>제목</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="article" items="${articles}">
 					<tr>
-						<th>번호</th>
-						<th>날짜</th>
-						<th>제목</th>
+						<td>${article.id } </td>
+						<td>${article.regDate.substring(0,10)}</td>
+						<td>${article.title}</td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="article" items="${articles}">
-						<tr>
-							<td>${article.id } </td>
-							<td>${article.regDate.substring(0,10)}</td>
-							<td>${article.title}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-		</table>
+				</c:forEach>
+			</tbody>
+	</table>
 </body>
 </html>
