@@ -6,6 +6,13 @@
 		<div class="container mx-auto px-3">
 			<div class="table-box-type-1">
 				<table>
+				<colgroup>
+				<col width ="80" />
+				<col width ="200"/>
+				<col />
+				<col width ="100"/>
+
+				</colgroup>
 						<thead>
 							<tr>
 								<th>번호</th>
@@ -18,7 +25,7 @@
 							<c:forEach var="article" items="${articles}">
 								<tr>
 									<td>${article.id } </td>
-									<td>${article.regDate.substring(0,10)}</td>
+									<td>${article.regDate.substring(0,16)}</td>
 									<td><a class="hover:underline" href="../article/detail?id=${article.id}">${article.title}</a></td>
 									<td>${article.extra__writer}</td>
 								</tr>
