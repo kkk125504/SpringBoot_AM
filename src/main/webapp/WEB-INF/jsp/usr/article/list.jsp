@@ -11,6 +11,7 @@
 								<th>번호</th>
 								<th>날짜</th>
 								<th>제목</th>
+								<th>작성자</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -18,7 +19,8 @@
 								<tr>
 									<td>${article.id } </td>
 									<td>${article.regDate.substring(0,10)}</td>
-									<td><a href="../article/detail?id=${article.id}">${article.title}</a></td>
+									<td><a class="hover:underline" href="../article/detail?id=${article.id}">${article.title}</a></td>
+									<td>${article.extra__writer}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
