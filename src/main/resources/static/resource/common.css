@@ -39,6 +39,14 @@ html > body {
 .table-box-type-1 > table {
 	width:100%;
 }
+.table-box-type-1 > .min {
+	width:50%;
+}
+.btns-box-type-1{
+	width:50%;
+	margin-left : auto;
+	margin-right : auto;
+}
 .table-box-type-1 > table th ,.table-box-type-1 > table td {
 	border : 1px solid black;
 	padding : 10px;
