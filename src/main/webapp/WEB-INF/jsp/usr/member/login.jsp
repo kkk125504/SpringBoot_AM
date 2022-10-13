@@ -28,8 +28,7 @@
 				<button type="button" onclick="history.back()">뒤로가기</button>
 			</div>	
 			</form>			
-		</div>
-			
+		</div>			
 	</section>
 	
 <%@ include file="../common/foot.jspf" %>
