@@ -13,7 +13,7 @@
 				<col width ="100"/>
 
 				</colgroup>
-						<thead>
+						<thead class="bg-gray-200">
 							<tr>
 								<th>번호</th>
 								<th>날짜</th>
@@ -33,8 +33,8 @@
 						</tbody>
 				</table>
 			</div>
-			<div class= "btns">
-				<button type="button" onclick="history.back()">뒤로가기</button>
+			<div class= "btns flex justify-end mx-4">
+				<button class="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back()">뒤로가기</button>
 			</div>
 		</div>
 		

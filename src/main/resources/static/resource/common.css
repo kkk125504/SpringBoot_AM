@@ -57,6 +57,6 @@ html > body {
 	color: grey;
 }
 .btn-text-link:hover{
-	color: red;
+	color: black;
 	text-decoration: underline;
 }

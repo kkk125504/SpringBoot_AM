@@ -40,6 +40,8 @@ public class ArticleService {
 		}
 		ResultData actorCanDeleteRd = actorCanDelete(actorId,article);
 		article.setExtra__actorCanDelete(actorCanDeleteRd.isSuccess());
+		ResultData actorCanModify = actorCanModify(actorId,article);
+		article.setExtra__actorCanModify(actorCanModify.isSuccess());
 	}
 
 	public ResultData<Integer> writeArticle(int loginedMemberId, String title, String body) {
