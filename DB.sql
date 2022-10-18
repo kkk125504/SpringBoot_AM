@@ -57,7 +57,7 @@ loginPw = 'admin',
 `name` = '관리자', 
 nickname = '관리자',
 cellphoneNum = '01012341234',
-email = 'axdsw121@gmail.com';
+email = 'kginyc5500@gmail.com';
 
 # 회원 테스트데이터 생성 (일반)
 INSERT INTO `member` 
@@ -68,7 +68,7 @@ loginPw = 'test1',
 `name` = '사용자1', 
 nickname = '사용자1',
 cellphoneNum = '01043214321',
-email = 'axdsw121@gmail.com';
+email = 'kginyc5501@gmail.com';
 
 INSERT INTO `member` 
 SET regDate = NOW(),
@@ -78,7 +78,7 @@ loginPw = 'test2',
 `name` = '사용자2', 
 nickname = '사용자2',
 cellphoneNum = '01067896789',
-email = 'axdsw121@gmail.com';
+email = 'kginyc5502@gmail.com';
 
 SELECT * FROM `member`;
 
@@ -128,6 +128,18 @@ UPDATE article
 SET boardId = 2
 WHERE id IN (3);
 
-SELECT * FROM board;
+
+ # 게시물 갯수 늘리기
+INSERT INTO article
+(
+	regDate, updateDate, memberId, boardId, title, `body`
+)
+SELECT NOW(), NOW(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, CONCAT('제목_',RAND()), CONCAT('내용_',RAND())
+FROM article;
+
+SELECT COUNT(*) FROM article;
 
 SELECT LAST_INSERT_ID();
+SELECT * FROM board;
+
+
