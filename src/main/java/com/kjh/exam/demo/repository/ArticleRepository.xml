@@ -31,6 +31,9 @@
 		AND boardId = #{boardId}
 		</if>
 		ORDER BY A.id DESC
+		<if test="limitTake != -1">
+		LIMIT #{limitStart}, #{limitTake}
+		</if>
 	</select>
 
 	<delete id="deleteArticle">
