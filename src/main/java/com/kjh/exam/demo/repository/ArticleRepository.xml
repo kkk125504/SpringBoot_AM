@@ -9,7 +9,8 @@
 		NOW(),
 		memberId = #{loginedMemberId},
 		title = #{title},
-		`body`= #{body}
+		`body`= #{body},
+		boardId = #{boardId}
 	</insert>
 
 	<select id="getForPrintArticle" resultType="Article">

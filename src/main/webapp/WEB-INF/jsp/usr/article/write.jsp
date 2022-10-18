@@ -11,12 +11,22 @@
 					</colgroup>	
 					<tbody>														
 						<tr>
+							<td>게시판 선택</td>
+							<td>
+								<select name="boardId" class="select select-bordered">
+									<option disabled>게시판을 선택해주세요</option>
+									<option value="1">공지사항</option>
+									<option value="2">자유게시판</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
 							<td>제목</td>
-							<td><input type="text" class="w-4/6 input input-bordered input-lg" name="title" value="${article.title }" placeholder="제목을 입력해주세요." /></td>						
+							<td><input required="required" type="text" class="w-4/6 input input-bordered input-lg" name="title" value="${article.title }" placeholder="제목을 입력해주세요." /></td>						
 						</tr>
 						<tr>
 							<td>내용</td>
-							<td><textarea name="body" class="textarea textarea-bordered h-52 w-11/12" placeholder="내용을 입력해주세요." >${article.body }</textarea></td>						
+							<td><textarea required="required" name="body" class="textarea textarea-bordered h-52 w-11/12" placeholder="내용을 입력해주세요." >${article.body }</textarea></td>						
 						</tr>
 						<tr>
 							<td>작성자</td>
