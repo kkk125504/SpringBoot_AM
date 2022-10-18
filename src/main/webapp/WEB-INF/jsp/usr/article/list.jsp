@@ -4,6 +4,7 @@
 <%@ include file="../common/head.jspf" %>
 	<section class="mt-8 text-xl">
 		<div class="container mx-auto px-3">
+			<div>총 게시물 수 : ${articlesCount} 개</div>
 			<div class="table-box-type-1">
 				<table>
 				<colgroup>

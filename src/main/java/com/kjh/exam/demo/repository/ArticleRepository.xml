@@ -51,6 +51,12 @@
 		SELECT LAST_INSERT_ID()
 	</select>
 
+	<select id="getArticlesCount" resultType="int">
+		SELECT COUNT(*) FROM article
+		WHERE boardId = #{boardId}
+	</select>
+
+
 </mapper>
 
 
