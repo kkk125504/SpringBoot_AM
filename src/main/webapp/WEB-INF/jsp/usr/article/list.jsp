@@ -35,10 +35,25 @@
 				</table>
 			</div>
 			<div class="page-menu mt-3 flex justify-center">
+				<c:set var="pageMenuLen" value="5"/>
+				<c:set var="startPage" value="${page - pageMenuLen >= 1 ? page - pageMenuLen : 1}"/>
+				<c:set var="endPage" value="${page + pageMenuLen <= pagesCount ? page + pageMenuLen : pagesCount}"/>
 				<div class="btn-group">
-					<c:forEach begin="1" end="${pagesCount }" var="i">
-						<a class="btn btn-md ${page == i ? 'btn-active' : '' }" href="?page=${i }">${i }</a>
+					<c:if test="${startPage>1 }">
+						<a class="btn btn-md" href="?boardId=${board.id}&page=1">1</a>
+					</c:if>
+					<c:if test="${startPage > 2 }">
+						<a class="btn btn-md btn-disabled" href="#">...</a>
+					</c:if>
+					<c:forEach begin="${startPage }" end="${endPage}" var="i">
+						<a class="btn btn-md ${page == i ? 'btn-active' : '' }" href="?boardId=${board.id}&page=${i }">${i }</a>
 					</c:forEach>
+					<c:if test="${endPage < pagesCount-1 }">
+						<a class="btn btn-md btn-disabled" href="#">...</a>
+					</c:if>
+					<c:if test="${endPage < pagesCount }">
+						<a class="btn btn-md" href="?boardId=${board.id}&page=${pagesCount }">${pagesCount }</a>
+					</c:if>
 				</div>				
 			</div>
 		</div>
