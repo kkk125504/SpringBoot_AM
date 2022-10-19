@@ -43,14 +43,17 @@ public class UsrArticleController {
 			return rq.jsHistoryBackOnView("존재하지 않는 게시판 입니다.");
 		}
 
-		int itemsInApage = 10;
+		int itemsInAPage = 10;
 
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId, page, itemsInApage);
-
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId, page, itemsInAPage);
+		
 		int articlesCount = articleService.getArticlesCount(boardId);
+		int pagesCount = (int)Math.ceil((double)articlesCount/itemsInAPage);
 		model.addAttribute("articles", articles);
 		model.addAttribute("board", board);
 		model.addAttribute("articlesCount", articlesCount);
+		model.addAttribute("page", page);
+		model.addAttribute("pagesCount", pagesCount);
 		return "usr/article/list";
 	}
 
