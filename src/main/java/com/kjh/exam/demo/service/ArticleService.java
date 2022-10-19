@@ -84,9 +84,9 @@ public class ArticleService {
 		return ResultData.from("S-1", "삭제 가능 합니다.");
 	}
 
-	public int getArticlesCount(int boardId) {
+	public int getArticlesCount(int boardId, String searchKeywordType, String searchKeyword) {
 
-		return articleRepository.getArticlesCount(boardId);
+		return articleRepository.getArticlesCount(boardId, searchKeywordType, searchKeyword);
 	}
 
 }
