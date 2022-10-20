@@ -10,9 +10,9 @@ public class ResultData<DT> {
 	@Getter
 	private String msg;
 	@Getter
-	private DT data1;
-	@Getter
 	private String data1Name;
+	@Getter
+	private DT data1;
 
 	public static <DT> ResultData<DT> from(String resultCode, String msg) {
 		return from(resultCode, msg, null, null);

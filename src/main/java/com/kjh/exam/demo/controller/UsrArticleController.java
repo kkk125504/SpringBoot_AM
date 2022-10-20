@@ -29,12 +29,7 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
-		
-		ResultData<Integer> increaseHitCountRd = articleService.increaseHitCount(id);
-		if(increaseHitCountRd.isFail()) {
-			return rq.jsHistoryBackOnView(increaseHitCountRd.getMsg());
-		}
-		
+			
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 		model.addAttribute("article", article);
 		return "usr/article/detail";
@@ -142,6 +137,17 @@ public class UsrArticleController {
 		articleService.deleteArticle(id);
 
 		return rq.jsReplace(Ut.f("%d번 게시물을 삭제 했습니다.", id), Ut.f("../article/list?boardId=%d", article.getBoardId()));
+	}
+	
+	@RequestMapping("/usr/article/doIncreaseHitCountRd")
+	@ResponseBody
+	public ResultData<Integer> doIncreaseHitCount(int id){
+		ResultData<Integer> increaseHitCountRd = articleService.increaseHitCount(id);
+		if(increaseHitCountRd.isFail()) {
+			return increaseHitCountRd;
+		}
+		int hitCount = articleService.getHitCount(id);
+		return ResultData.newData(increaseHitCountRd, "hitCount", hitCount);
 	}
 
 }
