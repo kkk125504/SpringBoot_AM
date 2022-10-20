@@ -60,10 +60,10 @@
 		WHERE boardId = #{boardId}
 		<if test="searchKeyword !=''">
 			<choose>
-				<when test="searchKeywordType==title">
+				<when test="searchKeywordType=='title'">
 				AND title LIKE CONCAT('%',#{searchKeyword},'%')
 				</when>
-		    	<when test="searchKeywordType==body">
+		    	<when test="searchKeywordType=='body'">
 		    	AND body LIKE CONCAT('%',#{searchKeyword},'%')
 		    	</when>
 		    	<otherwise>
@@ -75,8 +75,4 @@
 			</choose>
 		</if>
 	</select>
-
-
 </mapper>
-
-
