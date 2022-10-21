@@ -85,7 +85,7 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/modify")
 	public String showModify(Model model, int id) {
-
+		
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 		model.addAttribute("article", article);
 
@@ -98,7 +98,7 @@ public class UsrArticleController {
 		if (actorCanModifyRd.isFail()) {
 			return rq.jsHistoryBackOnView(actorCanModifyRd.getMsg());
 		}
-
+		
 		return "usr/article/modify";
 	}
 
