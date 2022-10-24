@@ -46,7 +46,7 @@
 							<c:forEach var="article" items="${articles}">
 								<tr>
 									<td>${article.id } </td>
-									<td>${article.regDate.substring(0,16)}</td>
+									<td>${article.forPrintType1RegDate}</td>
 									<td><a class="hover:underline block w-full truncate" href="../article/detail?id=${article.id}">${article.title}</a></td>
 									<td>${article.extra__writer}</td>
 									<td>${article.hitCount}</td>
