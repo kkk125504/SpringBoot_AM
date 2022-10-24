@@ -22,9 +22,7 @@
 				ajaxMode : 'Y'
 			}, function(data) {
 				$('.article-detail__hit-count').empty().html(data.data1);
-			}, 'json');
-			
-			
+			}, 'json');			
 		}
 		
 		$(function() {
