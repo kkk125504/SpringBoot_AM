@@ -60,11 +60,18 @@
 						</tr>
 						<tr>
 							<td class="bg-gray-200">조회수</td>
-							<td><span class="badge article-detail__hit-count">${article.hitCount }</span></td>						
+							<td>
+							<span class="badge article-detail__hit-count">${article.hitCount }</span>
+							   
+							</td>						
 						</tr>
 						<tr>
 							<td class="bg-gray-200">추천 수</td>
-							<td><span class="badge">${article.extra__sumReactionPoint }</span></td>						
+							<td>
+								<span class="btn <btn-active></btn-active> btn-sm">${article.extra__sumReactionPoint }</span>
+								<button class="btn btn-outline btn-sm">좋아요 👍</button>
+								<button class="btn btn-outline btn-sm">싫어요 👎</button>
+							</td>						
 						</tr>
 					</tbody>								
 				</table>
