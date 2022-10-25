@@ -68,9 +68,13 @@
 						<tr>
 							<td class="bg-gray-200">추천 수</td>
 							<td>
-								<span class="btn <btn-active></btn-active> btn-sm">${article.extra__sumReactionPoint }</span>
-								<button class="btn btn-outline btn-sm">좋아요 👍</button>
-								<button class="btn btn-outline btn-sm">싫어요 👎</button>
+								<span class="btn btn-active btn-sm">${article.extra__sumReactionPoint }</span>
+								<c:if test="${actorCanMakeReaction}">
+								<span>&nbsp;</span>
+								<button class="btn btn-outline btn-xs">좋아요 👍</button>
+								<span>&nbsp;</span>
+								<button class="btn btn-outline btn-xs">싫어요 👎</button>
+							</c:if>
 							</td>						
 						</tr>
 					</tbody>								
