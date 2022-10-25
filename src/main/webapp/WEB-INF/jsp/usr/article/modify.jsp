@@ -29,6 +29,10 @@
 						<tr>
 							<td>내용</td>
 							<td><textarea name="body" class="textarea textarea-bordered h-52 w-11/12" placeholder="내용을 입력해주세요." >${article.body }</textarea></td>						
+						</tr>
+						<tr>
+							<td>추천 수</td>
+							<td><span class="badge">${article.extra__sumReactionPoint }</span></td>						
 						</tr>						
 					</tbody>								
 				</table>

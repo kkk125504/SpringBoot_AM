@@ -31,7 +31,8 @@
 				<col width ="200"/>
 				<col />
 				<col width ="200"/>
-				<col width ="200"/>
+				<col width ="100"/>
+				<col width ="100"/>
 				</colgroup>
 						<thead class="bg-gray-200">
 							<tr>
@@ -40,6 +41,7 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>조회수</th>
+								<th>추천</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,6 +52,7 @@
 									<td><a class="hover:underline block w-full truncate" href="../article/detail?id=${article.id}">${article.title}</a></td>
 									<td>${article.extra__writer}</td>
 									<td>${article.hitCount}</td>
+									<td>${article.extra__sumReactionPoint}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
