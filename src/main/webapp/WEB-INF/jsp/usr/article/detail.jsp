@@ -69,7 +69,7 @@
 							<td class="bg-gray-200">추천 수</td>
 							<td>
 								<span class="btn btn-active btn-sm">${article.extra__sumReactionPoint }</span>
-								<c:if test="${actorCanMakeReaction}">
+							<c:if test="${actorCanMakeReaction}">
 								<span>&nbsp;</span>
 								<button class="btn btn-outline btn-xs">좋아요 👍</button>
 								<span>&nbsp;</span>
