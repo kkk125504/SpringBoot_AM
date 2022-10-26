@@ -71,9 +71,9 @@
 								<span class="btn btn-active btn-sm">${article.goodReactionPoint }</span>
 							<c:if test="${actorCanMakeReaction}">
 								<span>&nbsp;</span>
-								<button class="btn btn-outline btn-xs">좋아요 👍</button>
+									<a href="/usr/reactionPoint/doGoodReaction" class="btn btn-outline btn-xs">좋아요 👍</a>
 								<span>&nbsp;</span>
-								<button class="btn btn-outline btn-xs">싫어요 👎</button>
+									<a href="/usr/reactionPoint/doBadReaction" class="btn btn-outline btn-xs">싫어요 👎</a>
 							</c:if>
 							</td>						
 						</tr>
