@@ -71,9 +71,9 @@
 								<span class="btn btn-active btn-sm">${article.goodReactionPoint }</span>
 							<c:if test="${actorCanMakeReaction}">
 								<span>&nbsp;</span>
-									<a href="/usr/reactionPoint/doGoodReaction" class="btn btn-outline btn-xs">좋아요 👍</a>
+									<a href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-outline btn-xs">좋아요 👍</a>
 								<span>&nbsp;</span>
-									<a href="/usr/reactionPoint/doBadReaction" class="btn btn-outline btn-xs">싫어요 👎</a>
+									<a href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-outline btn-xs">싫어요 👎</a>
 							</c:if>
 							</td>						
 						</tr>

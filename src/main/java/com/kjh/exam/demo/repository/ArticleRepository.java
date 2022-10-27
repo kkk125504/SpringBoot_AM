@@ -30,5 +30,9 @@ public interface ArticleRepository {
 	public int increaseHitCount(int id);
 	
 	public int getHitCount(int id);
+
+	public int increaseGoodReactionPoint(int relId);
+
+	public int increaseBadReactionPoint(int relId);
 		
 }

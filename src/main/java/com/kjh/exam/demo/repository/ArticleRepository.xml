@@ -93,7 +93,7 @@
 		</if>
 	</select>
 	
-	<update id="increaseHitCount">
+	<update id="getHitCount">
 		UPDATE article		
 		<set>
 		hitCount = hitCount +1
@@ -101,9 +101,20 @@
 		WHERE id = #{id}
 	</update>
 	
-	<select id="getHitCount" resultType="int">
-		SELECT hitCount FROM article
-		WHERE id = #{id}
-	</select>				
+	<update id="increaseGoodReactionPoint">
+		UPDATE article		
+		<set>
+		goodReactionPoint = goodReactionPoint +1
+		</set>		
+		WHERE id = #{relId}
+	</update>	
+	
+	<update id="increaseBadReactionPoint">
+		UPDATE article		
+		<set>
+		badReactionPoint = badReactionPoint +1
+		</set>		
+		WHERE id = #{relId}
+	</update>			
 				
 </mapper>
