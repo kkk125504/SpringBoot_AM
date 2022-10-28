@@ -93,13 +93,17 @@
 		</if>
 	</select>
 	
-	<update id="getHitCount">
-		UPDATE article		
-		<set>
-		hitCount = hitCount +1
-		</set>		
-		WHERE id = #{id}
+	<update id ="increaseHitCount">
+			UPDATE article
+			SET hitCount = hitCount + 1
+			WHERE id = #{id}
 	</update>
+	
+	<select id="getHitCount" resultType="int">
+			SELECT hitCount
+			FROM article
+			WHERE id = #{id}
+	</select>
 	
 	<update id="increaseGoodReactionPoint">
 		UPDATE article		

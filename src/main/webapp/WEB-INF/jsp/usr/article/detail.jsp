@@ -68,12 +68,33 @@
 						<tr>
 							<td class="bg-gray-200">추천 수</td>
 							<td>
-								<span class="btn btn-active btn-sm">${article.goodReactionPoint }</span>
+							<span class="btn btn-active btn-sm">${article.goodReactionPoint }</span>
 							<c:if test="${actorCanMakeReaction}">
 								<span>&nbsp;</span>
 									<a href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-outline btn-xs">좋아요 👍</a>
 								<span>&nbsp;</span>
 									<a href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}" class="btn btn-outline btn-xs">싫어요 👎</a>
+							</c:if>
+							
+							<c:if test="${actorCanCancelGoodReaction}">
+								<span>&nbsp;</span>
+								<a href="/usr/reactionPoint/doCancelGoodReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri} "
+									class="btn btn-xs btn-primary"
+								>좋아요 👍</a>
+								<span>&nbsp;</span>
+								<a onclick="alert(this.title); return false;" title="좋아요를 취소해주세요" href="#" class="btn btn-outline btn-xs">싫어요
+									👎</a>
+							</c:if>
+							
+							<c:if test="${actorCanCancelBadReaction}">
+								<span>&nbsp;</span>
+								<a onclick="alert(this.title); return false;" title="싫어요를 먼저 취소해주세요" href="#" class="btn btn-outline btn-xs">좋아요
+									👍</a>
+								<span>&nbsp;</span>
+								<a
+									href="/usr/reactionPoint/doCancelBadReaction?relTypeCode=article&relId=${param.id}&replaceUri=${rq.encodedCurrentUri}"
+									class="btn btn-xs btn-primary"
+								>싫어요 👎</a>
 							</c:if>
 							</td>						
 						</tr>
