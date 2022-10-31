@@ -63,7 +63,11 @@ public class Rq {
 	public void println(String str) {
 		print(str + "\n");
 	}
-
+	
+	public boolean isNotLogined() {
+		return !isLogined;
+	}
+	
 	public void login(Member member) {
 		session.setAttribute("loginedMemberId", member.getId());
 		session.setAttribute("loginedMemberLoginId", member.getLoginId());		
