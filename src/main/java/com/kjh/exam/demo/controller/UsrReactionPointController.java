@@ -1,20 +1,11 @@
 package com.kjh.exam.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kjh.exam.demo.service.ArticleService;
-import com.kjh.exam.demo.service.BoardService;
 import com.kjh.exam.demo.service.ReactionPointService;
-import com.kjh.exam.demo.util.Ut;
-import com.kjh.exam.demo.vo.Article;
-import com.kjh.exam.demo.vo.Board;
 import com.kjh.exam.demo.vo.ResultData;
 import com.kjh.exam.demo.vo.Rq;
 
@@ -36,9 +27,9 @@ public class UsrReactionPointController {
 			return rq.jsHistoryBack(actorCanMakeReactionRd.getMsg());
 		}
 
-		reactionPointService.addGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
+		ResultData addGoodReactionPointRd = reactionPointService.addGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
 
-		return rq.jsReplace("좋아요!", replaceUri);
+		return rq.jsReplace(addGoodReactionPointRd.getMsg(), replaceUri);
 	}
 
 	@RequestMapping("/usr/reactionPoint/doBadReaction")
@@ -51,9 +42,9 @@ public class UsrReactionPointController {
 			return rq.jsHistoryBack(actorCanMakeReactionRd.getMsg());
 		}
 
-		reactionPointService.addBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
+		ResultData addBadReactionPointRd = reactionPointService.addBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
 
-		return rq.jsReplace("싫어요!", replaceUri);
+		return rq.jsReplace(addBadReactionPointRd.getMsg(), replaceUri);
 	}
 
 	@RequestMapping("/usr/reactionPoint/doCancelGoodReaction")
@@ -64,12 +55,12 @@ public class UsrReactionPointController {
 				relTypeCode, relId);
 
 		if (actorCanMakeReactionRd.isSuccess()) {
-			return rq.jsHistoryBack("좋아요 버튼이 클릭되지 않았습니다.");
+			return rq.jsHistoryBack(actorCanMakeReactionRd.getMsg());
 		}
 
-		reactionPointService.deleteGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
+		ResultData deleteGoodReactionPointRd = reactionPointService.deleteGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
 
-		return rq.jsReplace("좋아요 취소!", replaceUri);
+		return rq.jsReplace(deleteGoodReactionPointRd.getMsg(), replaceUri);
 	}
 
 	@RequestMapping("/usr/reactionPoint/doCancelBadReaction")
@@ -80,12 +71,12 @@ public class UsrReactionPointController {
 				relTypeCode, relId);
 
 		if (actorCanMakeReactionRd.isSuccess()) {
-			return rq.jsHistoryBack("싫어요 버튼이 클릭되지 않았습니다.");
+			return rq.jsHistoryBack(actorCanMakeReactionRd.getMsg());
 		}
 
-		reactionPointService.deleteBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
+		ResultData deleteBadReactionPointRd = reactionPointService.deleteBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
 		
-		return rq.jsReplace("싫어요 취소!", replaceUri);
+		return rq.jsReplace(deleteBadReactionPointRd.getMsg(), replaceUri);
 		
 	}
 }
