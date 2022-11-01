@@ -128,19 +128,8 @@ UPDATE article
 SET boardId = 2
 WHERE id IN (3);
 
-
- # 게시물 갯수 늘리기
-INSERT INTO article
-(
-	regDate, updateDate, memberId, boardId, title, `body`
-)
-SELECT NOW(), NOW(), FLOOR(RAND() * 2) + 1, FLOOR(RAND() * 2) + 1, CONCAT('제목_',RAND()), CONCAT('내용_',RAND())
-FROM article;
-
-SELECT COUNT(*) FROM article;
-
-SELECT LAST_INSERT_ID();
-SELECT * FROM board;
+# 게시물 테이블에 boardId 칼럼 추가
+ALTER TABLE article ADD COLUMN hitCount INT(10) UNSIGNED NOT NULL DEFAULT 0;
 
 # 추천 테이블 생성
 CREATE TABLE reactionPoint (
@@ -264,6 +253,14 @@ relTypeCode = 'article',
 relId = 2,
 `body` = '댓글 4';
 
+# 댓글 테이블에 goodReactionPoint 칼럼 추가
+ALTER TABLE reply ADD COLUMN goodReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;
+
+# 게시물 테이블에 badReactionPoint 칼럼 추가
+ALTER TABLE reply ADD COLUMN badReactionPoint INT(10) UNSIGNED NOT NULL DEFAULT 0;
+
+# 댓글 테이블에 인덱스 걸기
+ALTER TABLE `SB_AM`.`reply` ADD INDEX (`relTypeCode` , `relId`);
 #######################################################
 
 /*
