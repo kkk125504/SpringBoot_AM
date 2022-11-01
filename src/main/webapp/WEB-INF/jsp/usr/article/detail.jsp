@@ -74,7 +74,7 @@
 							<td class="bg-gray-200">제목</td><td>${article.title }</td>						
 						</tr>
 						<tr>
-							<td class="bg-gray-200">내용</td><td>${article.body }</td>						
+							<td class="bg-gray-200">내용</td><td>${article.getForPrintBody() }</td>						
 						</tr>
 						<tr>
 							<td class="bg-gray-200">작성자</td><td>${article.extra__writer }</td>						
@@ -174,7 +174,37 @@
 	
 	<section class="mt-5">
 	<div class="container mx-auto px-3">
-		<h2>댓글 리스트(${repliesCount })</h2>
+		<h2>댓글 리스트(${replies.size() })</h2>
+		<table class="table table-fixed w-full">
+			<colgroup>
+				<col width="50" />
+				<col width="100" />
+				<col width="100" />
+				<col width="50" />
+				<col width="140" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>날짜</th>
+					<th>작성자</th>
+					<th>추천</th>
+					<th>내용</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<c:forEach var="reply" items="${replies }">
+					<tr class="hover">
+						<td>${reply.id}</td>
+						<td>${reply.regDate}</td>
+						<td>${reply.extra__writerName}</td>
+						<td>${reply.goodReactionPoint}</td>
+						<td class="text-left">${reply.getForPrintBody()}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 </section>
 <%@ include file="../common/foot.jspf" %>
