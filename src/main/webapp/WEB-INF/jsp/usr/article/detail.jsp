@@ -8,7 +8,7 @@
 	</script>
 	
 	<script>
-	//게시물 조회수 관련
+		//게시물 조회수 관련
 		function ArticleDetail__increaseHitCount() {
 			const localStorageKey = 'article__' + params.id + '__alreadyView';
 			
@@ -52,6 +52,7 @@
 		form.submit();		
 	}	
 	</script>
+	
 	<section class="mt-8 text-xl">
 		<div class="container mx-auto px-3">
 			<div class="table-box-type-1">
@@ -170,4 +171,10 @@
 			</c:if>
 		</div>
 	</section>
+	
+	<section class="mt-5">
+	<div class="container mx-auto px-3">
+		<h2>댓글 리스트(${repliesCount })</h2>
+	</div>
+</section>
 <%@ include file="../common/foot.jspf" %>
