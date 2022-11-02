@@ -45,7 +45,7 @@ public class UsrArticleController {
 		model.addAttribute("actorCanMakeReactionRd", actorCanMakeReactionRd);
 		model.addAttribute("actorCanMakeReaction", actorCanMakeReactionRd.isSuccess());
 		
-		List<Reply> replies = replyService.getForPrintReplies("article",id);
+		List<Reply> replies = replyService.getForPrintReplies(rq.getLoginedMember(),"article",id);
 		model.addAttribute("replies",replies);
 		
 		if (actorCanMakeReactionRd.getResultCode().equals("F-2")) {
