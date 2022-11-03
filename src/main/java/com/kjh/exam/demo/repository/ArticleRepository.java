@@ -51,5 +51,12 @@ public interface ArticleRepository {
 			WHERE id = #{relId}
 			</script>
 				""")
-	public int decreaseBadReactionPoint(int relId);	
+	public int decreaseBadReactionPoint(int relId);
+
+	
+	@Select("""
+			SELECT * FROM article
+			WHERE id = #{relId}
+			""")
+	public Article getArticle(int relId);	
 }
