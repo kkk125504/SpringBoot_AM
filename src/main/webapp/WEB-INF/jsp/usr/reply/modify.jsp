@@ -12,10 +12,11 @@
 			}
 			form.body.value = form.body.value.trim();
 			if(form.body.value.length==0){
-				alert('댓글을 작성 해주세요.');
+				alert('내용을 작성 해주세요.');
 				form.body.focus();
 				return;
 			}
+			
 			ReplyModify__submitDone = true;
 			form.submit();		
 		}	
@@ -23,9 +24,8 @@
 	
 	<section class="mt-8 text-xl">
 		<div class="container mx-auto px-3">
-			<form class="table-box-type-1" method="post" action="doModify"
-			onsubmit="ReplyWrite__submitForm(this) return false;" 
-			>
+			<form class="table-box-type-1" method="get" action="doModify"
+			onsubmit="ReplyModify__submitForm(this); return false;" >
 				<table>
 					<colgroup>
 						<col width="200" />
@@ -46,6 +46,7 @@
 						<tr>
 							<th>번호</th>
 							<td>
+								<input type="hidden" name="id" value="${reply.id}"/>
 								<div class="badge">${reply.id }</div>
 							</td>
 						</tr>
@@ -70,22 +71,18 @@
 						<tr>
 							<th>내용</th>
 							<td>
-								<textarea class="textarea textarea-bordered w-full" type="text" name="body" placeholder="내용을 입력해주세요">${reply.body }</textarea>
+								<textarea class="textarea textarea-bordered w-full" name="body" placeholder="내용을 입력해주세요">${reply.body }</textarea>
 							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
 								<button class="btn btn-active btn-ghost" type="submit" value="수정">수정</button>
+								<button class ="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back()">뒤로가기</button>
 							</td>
 						</tr>
 					</tbody>								
 				</table>
-				
-				<div class= "btns flex justify-end">
-					<button class ="btn-text-link mx-4 btn btn-active btn-ghost" type="submit">수정</button>					
-					<button class ="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back()">뒤로가기</button>
-				</div>
 			</form>
 		</div>
 	</section>
