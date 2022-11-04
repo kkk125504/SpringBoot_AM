@@ -41,7 +41,11 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 				.addPathPatterns("/usr/reply/modify")
 				.addPathPatterns("/usr/reply/doModify")
 				.addPathPatterns("/usr/member/myPage")
-				.addPathPatterns("/usr/member/doLogout");
+				.addPathPatterns("/usr/member/doLogout")
+				.addPathPatterns("/usr/member/modify")
+				.addPathPatterns("/usr/member/doModify")
+				.addPathPatterns("/usr/member/checkPassword")
+				.addPathPatterns("/usr/member/doCheckPassword");
 		
 		registry.addInterceptor(needLogoutInterceptor)
 				.addPathPatterns("/usr/member/login")

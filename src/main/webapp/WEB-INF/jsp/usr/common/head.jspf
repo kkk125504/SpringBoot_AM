@@ -59,11 +59,11 @@
 					</c:if>
 					<c:if test="${rq.isLogined()}">
 						<li class="hover:underline">
-							<a class="flex h-full items-center px-3" href="../member/doLogout">
-								<span>LOGOUT</span>
-							</a>
 							<a class="flex h-full items-center px-3" href="../member/myPage">
 								<span>MYPAGE</span>
+							</a>
+							<a class="flex h-full items-center px-3" href="../member/doLogout">
+								<span>LOGOUT</span>
 							</a>
 						</li>
 					</c:if>

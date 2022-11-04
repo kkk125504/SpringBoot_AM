@@ -46,8 +46,13 @@ public class MemberService {
 		return member;
 	}
 
-	private Member getMemberByNameAndEmail(String name, String email) {
+	public Member getMemberByNameAndEmail(String name, String email) {
 		Member member = memberRepository.getMemberByNameAndEmail(name, email);
 		return member;
+	}
+
+	public ResultData modify(int actorId, String loginPw, String nickname, String cellphoneNum, String email) {
+		memberRepository.modify(actorId, loginPw, nickname, cellphoneNum,email);		
+		return ResultData.from("S-1", "회원정보가 수정 되었습니다.");
 	}
 }
