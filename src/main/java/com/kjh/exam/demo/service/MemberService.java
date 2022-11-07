@@ -11,11 +11,13 @@ import com.kjh.exam.demo.vo.ResultData;
 @Service
 public class MemberService {
 
-	MemberRepository memberRepository;
+	private MemberRepository memberRepository;
+	private AttrService attrService;
 
 	@Autowired
-	MemberService(MemberRepository memberRepository) {
+	MemberService(MemberRepository memberRepository, AttrService attrService) {
 		this.memberRepository = memberRepository;
+		this.attrService = attrService;
 	}
 
 	public ResultData<Integer> doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNum,
@@ -52,7 +54,16 @@ public class MemberService {
 	}
 
 	public ResultData modify(int actorId, String loginPw, String nickname, String cellphoneNum, String email) {
-		memberRepository.modify(actorId, loginPw, nickname, cellphoneNum,email);		
+		memberRepository.modify(actorId, loginPw, nickname, cellphoneNum, email);
 		return ResultData.from("S-1", "회원정보가 수정 되었습니다.");
+	}
+
+	public String genMemberModifyAuthKey(int actorId) {
+		String memberModifyAuthKey = Ut.getTempPassword(10);
+
+		attrService.setValue("member", actorId, "extra", "memberModifyAuthKey", memberModifyAuthKey,
+				Ut.getDateStrLater(60 * 5));
+
+		return memberModifyAuthKey;
 	}
 }
