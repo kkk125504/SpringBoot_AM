@@ -76,7 +76,8 @@
 	</script>
 	<section class="mt-8 text-xl">
 		<div class="container mx-auto px-3">
-			<form class="table-box-type-1" method="post" action="doModify" onsubmit="MemberModify__submitForm(this); return false">
+			<form class="table-box-type-1" method="post" action="doModify" onsubmit="MemberModify__submitForm(this); return false">				
+				<input type="hidden" name="memberModifyAuthKey" value="${param.memberModifyAuthKey }" />
 				<table>
 					<colgroup>
 						<col width="200" />
