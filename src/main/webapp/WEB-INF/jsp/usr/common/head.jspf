@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="/favicon.ico">
 <title>${pageTitle}</title>
 <link rel="stylesheet" href="/resource/common.css" />
 <script src="/resource/common.js" defer="defer"></script>
