@@ -5,6 +5,7 @@
 	<section class="mt-8 text-xl">
 		<div class="container mx-auto px-3">
 			<form class="table-box-type-1" method="post" action="doLogin">
+				<input type="hidden" name="afterReplaceUri" value="${param.afterReplaceUri }"/>
 				<table class="min mx-auto">
 				<colgroup>
 				<col width ="80" />
