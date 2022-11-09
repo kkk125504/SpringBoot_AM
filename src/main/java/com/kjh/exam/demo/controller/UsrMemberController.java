@@ -69,7 +69,7 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(String loginId, String loginPw, @RequestParam(defaultValue = "/") String afterReplaceUri) {
+	public String doLogin(String loginId, String loginPw, @RequestParam(defaultValue = "/") String afterLoginUri) {
 
 		if (rq.isLogined()) {
 			return Ut.jsHistoryBack("이미 로그인 되었습니다.");
@@ -93,7 +93,7 @@ public class UsrMemberController {
 		}
 		rq.login(member);
 
-		return Ut.jsReplace(Ut.f("%s님 환영합니다.", member.getName()), afterReplaceUri);
+		return Ut.jsReplace(Ut.f("%s님 환영합니다.", member.getName()), afterLoginUri);
 	}
 
 	@RequestMapping("/usr/member/doLogout")
