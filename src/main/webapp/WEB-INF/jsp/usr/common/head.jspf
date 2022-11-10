@@ -63,7 +63,7 @@
 							<a class="flex h-full items-center px-3" href="../member/myPage">
 								<span>MYPAGE</span>
 							</a>
-							<a class="flex h-full items-center px-3" href="../member/doLogout">
+							<a class="flex h-full items-center px-3" href="${rq.logoutUri}">
 								<span>LOGOUT</span>
 							</a>
 						</li>

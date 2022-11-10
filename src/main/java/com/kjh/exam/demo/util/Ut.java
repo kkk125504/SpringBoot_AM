@@ -101,7 +101,7 @@ public class Ut {
 
 		Enumeration<String> parameterNames = request.getParameterNames();
 
-		while (parameterNames.hasMoreElements()) {
+		while (parameterNames.hasMoreElements()) {	
 			String paramName = parameterNames.nextElement();
 			String paramValue = request.getParameter(paramName);
 
@@ -109,5 +109,11 @@ public class Ut {
 		}
 
 		return param;
+	}
+	public static String getAttr(Map map, String attrName, String defaultValue) {
+		if(map.containsKey(attrName)) {
+			return (String)map.get(attrName);
+		}
+		return defaultValue;
 	}
 }
