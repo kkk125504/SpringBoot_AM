@@ -151,6 +151,7 @@
 					<input type="hidden" name="relTypeCode" value="article" />
 					<input type="hidden" name="relId" value="${article.id }" />
 					<input type="hidden" name="replaceUri" value="${rq.currentUri}" />
+					<div>${rq.currentUri}</div>
 					<table class="table table-zebra w-full">
 						<colgroup>
 							<col width="200" />

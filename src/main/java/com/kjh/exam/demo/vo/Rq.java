@@ -92,7 +92,12 @@ public class Rq {
 	public String jsHistoryBack(String msg) {		
 		return Ut.jsHistoryBack(msg);
 	}
-
+	
+	public String jsHistoryBack(String resultCode, String msg) {		
+		msg = String.format("[%s] %s", resultCode, msg);		
+		return Ut.jsHistoryBack(msg);
+	}
+	
 	public String jsReplace(String msg, String uri) {		
 		return Ut.jsReplace(msg, uri);
 	}
@@ -145,6 +150,11 @@ public class Rq {
 	}
 	public String getArticleDetailUriFromArticleList(Article article) {
 		
-		return "../article/detail?id="+article.getId()+"&listUri="+getEncodedCurrentUri();
-	} 
+		return "../article/detail?id="+article.getId()+"&listUri="+getCurrentUri();
+	}
+	
+	public String getJoinUri() {
+		return "../member/join?afterLoginUri=" + getAfterLoginUri();
+	}
+
 }
