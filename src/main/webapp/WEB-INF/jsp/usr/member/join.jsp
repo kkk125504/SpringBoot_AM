@@ -5,7 +5,7 @@
 
 <script>
 	let submitJoinFormDone = false;
-	let loginIdDup = true;
+	let validLoginId = "";
 	
 	function submitJoinForm(form) {
 		if (submitJoinFormDone) {
@@ -19,8 +19,8 @@
 			return;
 		}
 		
-		if(loginIdDup){
-			alert('중복되는 아이디 입니다.');
+		if (form.loginId.value != validLoginId) {
+			alert('사용할 수 없는 아이디입니다!');
 			form.loginId.focus();
 			return;
 		}
@@ -71,18 +71,24 @@
 	}
 	
 	function checkLoginIdDup(el) {
-		$('.loginId-msg').html('<div class="mt-2">확인중...</div>');
 		const form = $(el).closest('form').get(0);
+		
+		if (form.loginId.value.length == 0) {
+			form.loginId.focus();
+			return;
+		}
 
+		$('.loginId-msg').html('<div class="mt-2">확인중...</div>');
+		
 		$.get('../member/getLoginIdDup', {			
 			loginId : form.loginId.value,
 			ajaxMode : 'Y'
 		}, function(data) {
 			$('.loginId-msg').html('<div class="mt-2">' + data.msg + '</div>');
 			if (data.success) {
-				loginIdDup = false;
+				validLoginId = data.data1;
 			} else {
-				loginIdDup = true;
+				validLoginId = '';
 			}
 		}, 'json');
 	}
