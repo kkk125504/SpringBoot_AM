@@ -71,7 +71,7 @@
 	}
 	
 	function checkLoginIdDup(el) {
-		$('.loginId-msg').empty();
+		$('.loginId-msg').html('<div class="mt-2">확인중...</div>');
 		const form = $(el).closest('form').get(0);
 
 		$.get('../member/getLoginIdDup', {			
