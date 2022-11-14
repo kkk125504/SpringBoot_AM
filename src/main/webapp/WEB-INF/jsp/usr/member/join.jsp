@@ -20,7 +20,7 @@
 		}
 		
 		if (form.loginId.value != validLoginId) {
-			alert('사용할 수 없는 아이디입니다!');
+			alert('사용할 수 없는 아이디입니다');
 			form.loginId.focus();
 			return;
 		}
@@ -74,10 +74,14 @@
 		const form = $(el).closest('form').get(0);
 		
 		if (form.loginId.value.length == 0) {
-			form.loginId.focus();
+			validLoginId = '';
 			return;
 		}
-
+		
+		if (validLoginId == form.loginId.value){
+			return;
+		}
+		
 		$('.loginId-msg').html('<div class="mt-2">확인중...</div>');
 		
 		$.get('../member/getLoginIdDup', {			
