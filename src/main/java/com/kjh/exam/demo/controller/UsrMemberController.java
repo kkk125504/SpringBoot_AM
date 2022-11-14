@@ -24,7 +24,7 @@ public class UsrMemberController {
 	public String showJoin() {
 		return "usr/member/join";
 	}
-	
+
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public String doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNum,
@@ -59,7 +59,7 @@ public class UsrMemberController {
 		ResultData<Integer> joinRd = memberService.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
 
 		if (joinRd.isFail()) {
-			return rq.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());	
+			return rq.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
 		}
 
 		String afterJoinUri = "../member/login?afterLoginUri=" + Ut.getUriEncoded(afterLoginUri);
@@ -111,65 +111,84 @@ public class UsrMemberController {
 
 		return Ut.jsReplace("로그아웃 했습니다.", afterLogoutUri);
 	}
-	
+
 	@RequestMapping("/usr/member/myPage")
-	public String showMyPage() {		
+	public String showMyPage() {
 
 		return "usr/member/myPage";
 	}
-	
+
 	@RequestMapping("/usr/member/checkPassword")
-	public String showCheckPassword() {		
+	public String showCheckPassword() {
 		return "usr/member/checkPassword";
 	}
-	
+
 	@RequestMapping("/usr/member/doCheckPassword")
 	@ResponseBody
-	public String doCheckPassword(String loginPw, String replaceUri) {		
-		if(Ut.empty(loginPw)) {
-			return rq.jsHistoryBack("비밀번호를 입력하세요.");			
+	public String doCheckPassword(String loginPw, String replaceUri) {
+		if (Ut.empty(loginPw)) {
+			return rq.jsHistoryBack("비밀번호를 입력하세요.");
 		}
 
-		if(rq.getLoginedMember().getLoginPw().equals(loginPw)==false) {
-			return rq.jsHistoryBack("비밀번호가 일치하지 않습니다.");	
+		if (rq.getLoginedMember().getLoginPw().equals(loginPw) == false) {
+			return rq.jsHistoryBack("비밀번호가 일치하지 않습니다.");
 		}
-		
-		if(replaceUri.equals("../member/modify")) {
+
+		if (replaceUri.equals("../member/modify")) {
 			String memberModifyAuthKey = memberService.genMemberModifyAuthKey(rq.getLoginedMemberId());
-			
+
 			replaceUri += "?memberModifyAuthKey=" + memberModifyAuthKey;
 		}
-		
+
 		return rq.jsReplace("비밀번호 확인", replaceUri);
 	}
-	
+
 	@RequestMapping("/usr/member/modify")
 	public String showModify(String memberModifyAuthKey) {
-		if(Ut.empty(memberModifyAuthKey)) {
+		if (Ut.empty(memberModifyAuthKey)) {
 			return rq.jsHistoryBackOnView("인증코드가 없거나 만료 되었습니다.");
 		}
-		ResultData checkMemberModifyAuthKeyRd = memberService.checkMemberModifyAuthKey(rq.getLoginedMemberId(),memberModifyAuthKey);
-		
-		if(checkMemberModifyAuthKeyRd.isFail()) {
+		ResultData checkMemberModifyAuthKeyRd = memberService.checkMemberModifyAuthKey(rq.getLoginedMemberId(),
+				memberModifyAuthKey);
+
+		if (checkMemberModifyAuthKeyRd.isFail()) {
 			return rq.jsHistoryBackOnView(checkMemberModifyAuthKeyRd.getMsg());
 		}
 		return "usr/member/modify";
 	}
-	
+
 	@RequestMapping("/usr/member/doModify")
 	@ResponseBody
-	public String doModify(String loginPw, String nickname, String cellphoneNum, String email,String memberModifyAuthKey) {
-		if(Ut.empty(memberModifyAuthKey)) {
+	public String doModify(String loginPw, String nickname, String cellphoneNum, String email,
+			String memberModifyAuthKey) {
+		if (Ut.empty(memberModifyAuthKey)) {
 			return rq.jsHistoryBack("인증코드가 없거나 만료 되었습니다.");
 		}
-		ResultData checkMemberModifyAuthKeyRd = memberService.checkMemberModifyAuthKey(rq.getLoginedMemberId(),memberModifyAuthKey);
-		
-		if(checkMemberModifyAuthKeyRd.isFail()) {
+		ResultData checkMemberModifyAuthKeyRd = memberService.checkMemberModifyAuthKey(rq.getLoginedMemberId(),
+				memberModifyAuthKey);
+
+		if (checkMemberModifyAuthKeyRd.isFail()) {
 			return rq.jsHistoryBack(checkMemberModifyAuthKeyRd.getMsg());
 		}
-		
-		ResultData modifyRd = memberService.modify(rq.getLoginedMemberId() ,loginPw, nickname,cellphoneNum, email);	
-		
+
+		ResultData modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, nickname, cellphoneNum, email);
+
 		return rq.jsReplace(modifyRd.getMsg(), "/");
+	}
+
+	@RequestMapping("/usr/member/getLoginIdDup")
+	@ResponseBody
+	public ResultData getLoginIdDup(String loginId) {
+		if (Ut.empty(loginId)) {
+			return ResultData.from("F-A", "아이디를 입력해주세요");
+		}
+
+		Member exsistMember = memberService.getMemberByLoginId(loginId);
+
+		if (exsistMember != null) {
+			return ResultData.from("F-A2", "이미 사용중인 아이디입니다.", "loginId", loginId);
+		}
+
+		return ResultData.from("S-1", "사용 가능한 아이디 입니다.", "loginId", loginId);
 	}
 }
