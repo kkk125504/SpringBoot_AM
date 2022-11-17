@@ -90,6 +90,13 @@
 			loginId : form.loginId.value,
 			ajaxMode : 'Y'
 		}, function(data) {
+			
+			if(data.resultCode== "F-B"){
+				alert(data.msg);
+				location.replace('/');
+				return;
+			}
+			
 			$('.loginId-msg').html('<div class="mt-2">' + data.msg + '</div>');
 			if (data.success) {
 				validLoginId = data.data1;
@@ -100,6 +107,7 @@
 	}
 	
 	const checkLoginIdDupDebounced = _.debounce(checkLoginIdDup,1000);
+	
 </script>
 
 <section class="mt-8 text-xl">

@@ -13,15 +13,20 @@ import com.kjh.exam.demo.vo.Rq;
 public class NeedLoginInterceptor implements HandlerInterceptor {
 	@Autowired
 	private Rq rq;
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-		if(!rq.isLogined()) {
-			String afterLoginUri = rq.getAfterLoginUri();
-			rq.printReplaceJs("로그인 후 이용가능 합니다.","../member/login?afterLoginUri="+afterLoginUri);
+		if (!rq.isLogined()) {
+			if (rq.isAjax()) {
+				resp.setContentType("application/json; charset=UTF-8");
+				resp.getWriter().append("{\"resultCode\":\"F-A\",\"msg\":\"로그인 후 이용해주세요\"}");
+			} else {
+				String afterLoginUri = rq.getAfterLoginUri();
+				rq.printReplaceJs("로그인 후 이용가능 합니다.", "../member/login?afterLoginUri=" + afterLoginUri);
+			}
 			return false;
 		}
-		
+
 		return HandlerInterceptor.super.preHandle(req, resp, handler);
 	}
 
